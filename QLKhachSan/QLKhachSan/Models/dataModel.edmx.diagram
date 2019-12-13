@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13dbe69581c34577b719181ac6cf7797" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="WEBSITEKSModel.DICHVU" Width="1.5" PointX="7.5" PointY="5.5" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.DICHVUDADAT" Width="1.5" PointX="9.75" PointY="1.625" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.HOADON" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.KHACHHANG" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.LOAIPHONG" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.NHANVIEN" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.PHIEUDATPHONG" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.PHONG" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WEBSITEKSModel.TANG" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_DICHVU" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_HOADON" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_HOADON_RELATIONS_NHANVIEN" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_HOADON_RELATIONS_PHIEUDAT" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_KHACHHAN" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_PHONG_RELATIONS_LOAIPHON" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_PHONG" />
+        <AssociationConnector Association="WEBSITEKSModel.FK_PHONG_RELATIONS_TANG" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

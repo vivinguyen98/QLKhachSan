@@ -1,0 +1,127 @@
+﻿@model IEnumerable<QLKhachSan.Models.PHIEUDATPHONG>
+
+@{
+    ViewBag.Title = "Phiếu đặt phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Index")">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Phiếu đặt phòng</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Phiếu đặt phòng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Mã KH")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tên KH")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày đặt")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày vào")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Ngày ra")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Số phòng")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Tình trạng")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TINHTRANGPHIEU == 1)
+                        {
+                            <tr class="alert-warning">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MAKH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KHACHHANG.HOTEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYDAT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYVAO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYRA)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.TINHTRANGPHIEU)*@
+                                    @Html.DisplayName("Chưa thanh toán")
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Sửa", "Edit", new { id = item.MAPHIEUDAT }) |*@
+                                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.MAPHIEUDAT }) 
+                                    @*|
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.MAPHIEUDAT })*@
+                                </td>
+                            </tr>
+                        }
+                        else if (item.TINHTRANGPHIEU == 2)
+                        {
+                            <tr class="alert-primary">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MAKH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KHACHHANG.HOTEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYDAT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYVAO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYRA)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.TINHTRANGPHIEU)*@
+                                    @Html.DisplayName("Đã thanh toán")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MAPHIEUDAT })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                           
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Cập nhật lần cuối vào @DateTime.Now</div>
+</div>
+
+

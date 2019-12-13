@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Trả phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using QLKhachSan.Models
+@model List<HOADON>
+
+    <!-- SSS -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index","Index")">Admin</a>
+        </li>
+        <li class="breadcrumb-item active">Trả phòng</li>
+    </ol>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Danh sách phòng đang sử dụng
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <!-- /SSS -->
+                <table class="table table-bordered table-striped table-hover" id="dataTable" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Số phòng</th>
+                            <th>Loại phòng</th>
+                            <th>Tầng</th>
+                            <th>Ngày vào</th>
+                            <th>Ngày ra</th>
+                            <th>Tình trạng</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    @*<tfoot>
+                            <tr>
+                                <th>SP</th>
+                                <th>Loại phòng</th>
+                                <th>Tầng</th>
+                                <th>Ngày vào</th>
+                                <th>Ngày ra</th>
+                                <th>Tình trạng</th>
+                                <th>Option</th>
+                            </tr>
+                        </tfoot>*@
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                @if (item.PHIEUDATPHONG.PHONG.TINHTRANGPHONG == 2)
+                                    {
+                                        <td>@item.PHIEUDATPHONG.PHONG.SOPHONG</td>
+                                        <td>@item.PHIEUDATPHONG.PHONG.LOAIPHONG.MOTA</td>
+                                        <td>@item.PHIEUDATPHONG.PHONG.TANG.TENTANG</td>
+                                        <td>@item.PHIEUDATPHONG.NGAYVAO.Value.ToShortDateString()</td>
+                                        <td>@item.PHIEUDATPHONG.NGAYRA.Value.ToShortDateString()</td>
+                                        <td><span class="badge badge-danger badge-g">@Html.DisplayName("Đang có khách")</span></td>
+                                    }
+                                @*@if (item.PHIEUDATPHONG.PHONG.TINHTRANGPHONG == 2)
+                                {
+                                    <td> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.PHONG.SOPHONG)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.PHONG.LOAIPHONG.MOTA)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.PHONG.TANG.TENTANG)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.NGAYVAO.Value.ToShortDateString())</td>
+                                    <td> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.NGAYRA.Value.ToShortDateString())</td>
+                                    <td><span class="badge badge-danger badge-g"> @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.PHONG.TINHTRANGPHONG)</span></td>
+                                }*@
+                                <td>
+                                    <a href="@Url.Action("ThanhToan","HoaDon",new { id = item.MAHD})"><div class="btn btn-danger badge-g">Trả phòng</div></a>
+                                    @*<a href="@Url.Action("GiaHanPhong","HoaDon",new { id = item.MAHD})"><div class="btn btn-info badge-g">Gia Hạn</div></a>*@
+                                    <a href="@Url.Action("DoiPhong","HoaDon",new { id = item.MAHD})"><div class="btn btn-secondary badge-g">Đổi phòng</div></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Cập nhật lần cuối vào @DateTime.Now</div>
+    </div>

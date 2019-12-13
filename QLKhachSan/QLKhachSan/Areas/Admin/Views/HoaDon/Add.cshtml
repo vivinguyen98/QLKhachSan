@@ -1,0 +1,92 @@
+﻿@model QLKhachSan.Models.PHIEUDATPHONG
+
+@{
+    ViewBag.Title = "Nhận Phòng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Index")">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Thông tin phiếu đặt phòng</li>
+</ol>
+<div class="container">
+
+    @using (Html.BeginForm("Result", "HoaDon"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.MAPHIEUDAT)
+        @Html.HiddenFor(model => model.MAKH)
+        @Html.HiddenFor(model => model.MAPHONG)
+        <div class="form-horizontal">
+            <h4>Phiếu đặt phòng</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-4" })
+                        @if (Model.MAKH == null)
+                        {
+                            try
+                            {
+                                List<QLKhachSan.Areas.Admin.Models.KhachHang> likh = Newtonsoft.Json.JsonConvert.DeserializeObject<List<QLKhachSan.Areas.Admin.Models.KhachHang>>(Model.THONGTINKHACHTHUE);
+                                <div class="col-md-12">
+                                    @Html.TextBox("hoten", likh[0].hoten, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(u => u.KHACHHANG.HOTEN, null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        }
+                    </div>
+                    @if (Model.NGAYDAT != null)
+                    {
+                        <div class="form-group">
+                            @Html.Label("Ngày đặt", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(u => u.NGAYDAT, null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.Label("Ngày vào", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(u => u.NGAYVAO, null, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Ngày ra", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(u => u.NGAYRA, null, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Số phòng", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(u => u.PHONG.SOPHONG, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12">
+                            <input type="submit" value="Nhận phòng" class="btn btn-success btn-lg" />
+                        </div>
+                    </div>
+                </div>
+               
+                   
+                
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+</div>

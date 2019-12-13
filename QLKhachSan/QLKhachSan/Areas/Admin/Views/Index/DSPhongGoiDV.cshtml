@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "DSPhongGoiDV";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using QLKhachSan.Models
+@model List<HOADON>
+
+<!-- SSS -->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Index")">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Danh sách phòng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <!-- /SSS -->
+            <table class="table table-bordered table-striped table-hover" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Số phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Tầng</th>
+                        <th>Ngày vào</th>
+                        <th>Tên khách hàng</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.PHIEUDATPHONG.PHONG.SOPHONG</td>
+                            <td>@item.PHIEUDATPHONG.PHONG.LOAIPHONG.MOTA</td>
+                            <td>@item.PHIEUDATPHONG.PHONG.TANG.TENTANG</td>
+                            <td>@item.PHIEUDATPHONG.NGAYVAO.Value.ToShortDateString()</td>
+                            <td>@item.PHIEUDATPHONG.KHACHHANG.HOTEN</td>
+                            <td><a href="@Url.Action("GoiDichVu","HoaDon",new { id = item.MAHD})"><button type="button" class="btn btn-primary badge-g">Gọi dịch vụ</button></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Cập nhật lần cuối vào @DateTime.Now</div>
+</div>

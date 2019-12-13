@@ -1,0 +1,89 @@
+﻿@model IEnumerable<QLKhachSan.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        @Html.ActionLink("Admin", "Index")
+    </li>
+    <li class="breadcrumb-item active">Danh sách nhân viên</li>
+</ol>
+<p>
+    @Html.ActionLink("Thêm nhân viên", "Create")
+</p>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Danh sách nhân viên
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-hover" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Họ tên
+                        </th>
+                        <th>
+                            Ngày sinh
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th>
+                            SĐT
+                        </th>
+                        <th>
+                            Tài khoản
+                        </th>
+                        <th>
+                            Chức vụ
+                        </th>@if (Session["NV"] != null && ((QLKhachSan.Models.NHANVIEN)Session["NV"]).CV == "Quản lý")
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HOTEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYSINH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DIACHI)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SDT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TAIKHOAN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CV)
+                            </td>
+                            @if (Session["NV"] != null && ((QLKhachSan.Models.NHANVIEN)Session["NV"]).CV == "Quản lý")
+                            {
+                                <td>
+
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.MANV }) |
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MANV }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.MANV })
+
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at @DateTime.Now</div>
+</div>

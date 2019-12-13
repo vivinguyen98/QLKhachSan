@@ -1,0 +1,50 @@
+﻿@using QLKhachSan.Models
+@model KHACHHANG
+@{
+    ViewBag.Title = "Login";
+}
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/Content/Home/images/ks.jpg)" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</header>
+<br /><br /><br /><br />
+<!DOCTYPE html>
+
+<html lang="en">
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Đăng nhập khách hàng</div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        @Html.TextBoxFor(u => u.EMAIL, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(u => u.EMAIL)
+                    </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            @Html.PasswordFor(u => u.MATKHAU, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.MATKHAU)
+                        </div>
+                        <input class="btn btn-primary btn-block" type="submit" value="Đăng nhập" />
+                }
+                <br />
+                <div>
+                    Bạn chưa có tài khoản
+                </div>
+                <a href="@Url.Action("Register", "Account")"><input class="btn btn-success btn-block" value="Đăng ký" /></a>
+                <br />
+                <a href="@Url.Action("Index","Home")">Quay Lại Trang Chủ</a>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="~/Content/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+</html>

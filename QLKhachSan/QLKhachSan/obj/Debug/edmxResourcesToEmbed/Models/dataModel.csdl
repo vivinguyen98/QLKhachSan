@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WEBSITEKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WEBSITEEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WEBSITEKSModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WEBSITEKSModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="DICHVUs" EntityType="WEBSITEKSModel.DICHVU" />
+    <EntitySet Name="DICHVUDADATs" EntityType="WEBSITEKSModel.DICHVUDADAT" />
+    <EntitySet Name="HOADONs" EntityType="WEBSITEKSModel.HOADON" />
+    <EntitySet Name="KHACHHANGs" EntityType="WEBSITEKSModel.KHACHHANG" />
+    <EntitySet Name="LOAIPHONGs" EntityType="WEBSITEKSModel.LOAIPHONG" />
+    <EntitySet Name="NHANVIENs" EntityType="WEBSITEKSModel.NHANVIEN" />
+    <EntitySet Name="PHIEUDATPHONGs" EntityType="WEBSITEKSModel.PHIEUDATPHONG" />
+    <EntitySet Name="PHONGs" EntityType="WEBSITEKSModel.PHONG" />
+    <EntitySet Name="sysdiagrams" EntityType="WEBSITEKSModel.sysdiagram" />
+    <EntitySet Name="TANGs" EntityType="WEBSITEKSModel.TANG" />
+    <AssociationSet Name="FK_DICHVUDA_DICHVUDAD_DICHVU" Association="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_DICHVU">
+      <End Role="DICHVU" EntitySet="DICHVUs" />
+      <End Role="DICHVUDADAT" EntitySet="DICHVUDADATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DICHVUDA_DICHVUDAD_HOADON" Association="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_HOADON">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="DICHVUDADAT" EntitySet="DICHVUDADATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_RELATIONS_NHANVIEN" Association="WEBSITEKSModel.FK_HOADON_RELATIONS_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_RELATIONS_PHIEUDAT" Association="WEBSITEKSModel.FK_HOADON_RELATIONS_PHIEUDAT">
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUDAT_RELATIONS_KHACHHAN" Association="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_KHACHHAN">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHONG_RELATIONS_LOAIPHON" Association="WEBSITEKSModel.FK_PHONG_RELATIONS_LOAIPHON">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUDAT_RELATIONS_PHONG" Association="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_PHONG">
+      <End Role="PHONG" EntitySet="PHONGs" />
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHONG_RELATIONS_TANG" Association="WEBSITEKSModel.FK_PHONG_RELATIONS_TANG">
+      <End Role="TANG" EntitySet="TANGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MADV" />
+    </Key>
+    <Property Name="MADV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENDV" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DVT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ANH" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="TONKHO" Type="Int32" />
+    <NavigationProperty Name="DICHVUDADATs" Relationship="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_DICHVU" FromRole="DICHVU" ToRole="DICHVUDADAT" />
+  </EntityType>
+  <EntityType Name="DICHVUDADAT">
+    <Key>
+      <PropertyRef Name="MADV" />
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MADV" Type="Int32" Nullable="false" />
+    <Property Name="MAHD" Type="Int32" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DICHVU" Relationship="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_DICHVU" FromRole="DICHVUDADAT" ToRole="DICHVU" />
+    <NavigationProperty Name="HOADON" Relationship="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_HOADON" FromRole="DICHVUDADAT" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MANV" Type="Int32" />
+    <Property Name="MAPHIEUDAT" Type="Int32" />
+    <Property Name="NGAYTRAPHONG" Type="DateTime" Precision="3" />
+    <Property Name="TIENPHONG" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TIENDICHVU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PHUTHU" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TINHTRANGHD" Type="Int32" />
+    <NavigationProperty Name="DICHVUDADATs" Relationship="WEBSITEKSModel.FK_DICHVUDA_DICHVUDAD_HOADON" FromRole="HOADON" ToRole="DICHVUDADAT" />
+    <NavigationProperty Name="NHANVIEN" Relationship="WEBSITEKSModel.FK_HOADON_RELATIONS_NHANVIEN" FromRole="HOADON" ToRole="NHANVIEN" />
+    <NavigationProperty Name="PHIEUDATPHONG" Relationship="WEBSITEKSModel.FK_HOADON_RELATIONS_PHIEUDAT" FromRole="HOADON" ToRole="PHIEUDATPHONG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKH" />
+    </Key>
+    <Property Name="MAKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HOTEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MATKHAU" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="CMT" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DIEM" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="PHIEUDATPHONGs" Relationship="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_KHACHHAN" FromRole="KHACHHANG" ToRole="PHIEUDATPHONG" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="MALOAI" />
+    </Key>
+    <Property Name="MALOAI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MOTA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TILEPHUTHU" Type="Int32" />
+    <Property Name="ANH" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHONGs" Relationship="WEBSITEKSModel.FK_PHONG_RELATIONS_LOAIPHON" FromRole="LOAIPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HOTEN" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+    <Property Name="DIACHI" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TAIKHOAN" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="MATKHAU" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="CV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HOADONs" Relationship="WEBSITEKSModel.FK_HOADON_RELATIONS_NHANVIEN" FromRole="NHANVIEN" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="PHIEUDATPHONG">
+    <Key>
+      <PropertyRef Name="MAPHIEUDAT" />
+    </Key>
+    <Property Name="MAPHIEUDAT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MAKH" Type="Int32" />
+    <Property Name="MAPHONG" Type="Int32" />
+    <Property Name="NGAYDAT" Type="DateTime" Precision="3" />
+    <Property Name="NGAYVAO" Type="DateTime" Precision="3" />
+    <Property Name="NGAYRA" Type="DateTime" Precision="3" />
+    <Property Name="THONGTINKHACHTHUE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TINHTRANGPHIEU" Type="Int32" />
+    <NavigationProperty Name="HOADONs" Relationship="WEBSITEKSModel.FK_HOADON_RELATIONS_PHIEUDAT" FromRole="PHIEUDATPHONG" ToRole="HOADON" />
+    <NavigationProperty Name="KHACHHANG" Relationship="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_KHACHHAN" FromRole="PHIEUDATPHONG" ToRole="KHACHHANG" />
+    <NavigationProperty Name="PHONG" Relationship="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_PHONG" FromRole="PHIEUDATPHONG" ToRole="PHONG" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="MAPHONG" />
+    </Key>
+    <Property Name="MAPHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MATANG" Type="Int32" />
+    <Property Name="MALOAI" Type="Int32" />
+    <Property Name="SOPHONG" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TINHTRANGPHONG" Type="Int32" />
+    <NavigationProperty Name="LOAIPHONG" Relationship="WEBSITEKSModel.FK_PHONG_RELATIONS_LOAIPHON" FromRole="PHONG" ToRole="LOAIPHONG" />
+    <NavigationProperty Name="PHIEUDATPHONGs" Relationship="WEBSITEKSModel.FK_PHIEUDAT_RELATIONS_PHONG" FromRole="PHONG" ToRole="PHIEUDATPHONG" />
+    <NavigationProperty Name="TANG" Relationship="WEBSITEKSModel.FK_PHONG_RELATIONS_TANG" FromRole="PHONG" ToRole="TANG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TANG">
+    <Key>
+      <PropertyRef Name="MATANG" />
+    </Key>
+    <Property Name="MATANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENTANG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHONGs" Relationship="WEBSITEKSModel.FK_PHONG_RELATIONS_TANG" FromRole="TANG" ToRole="PHONG" />
+  </EntityType>
+  <Association Name="FK_DICHVUDA_DICHVUDAD_DICHVU">
+    <End Type="WEBSITEKSModel.DICHVU" Role="DICHVU" Multiplicity="1" />
+    <End Type="WEBSITEKSModel.DICHVUDADAT" Role="DICHVUDADAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="MADV" />
+      </Principal>
+      <Dependent Role="DICHVUDADAT">
+        <PropertyRef Name="MADV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DICHVUDA_DICHVUDAD_HOADON">
+    <End Type="WEBSITEKSModel.HOADON" Role="HOADON" Multiplicity="1" />
+    <End Type="WEBSITEKSModel.DICHVUDADAT" Role="DICHVUDADAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="DICHVUDADAT">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_RELATIONS_NHANVIEN">
+    <End Type="WEBSITEKSModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.HOADON" Role="HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_RELATIONS_PHIEUDAT">
+    <End Type="WEBSITEKSModel.PHIEUDATPHONG" Role="PHIEUDATPHONG" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.HOADON" Role="HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPHIEUDAT" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MAPHIEUDAT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUDAT_RELATIONS_KHACHHAN">
+    <End Type="WEBSITEKSModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.PHIEUDATPHONG" Role="PHIEUDATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHONG_RELATIONS_LOAIPHON">
+    <End Type="WEBSITEKSModel.LOAIPHONG" Role="LOAIPHONG" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.PHONG" Role="PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="MALOAI" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MALOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUDAT_RELATIONS_PHONG">
+    <End Type="WEBSITEKSModel.PHONG" Role="PHONG" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.PHIEUDATPHONG" Role="PHIEUDATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG">
+        <PropertyRef Name="MAPHONG" />
+      </Principal>
+      <Dependent Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPHONG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHONG_RELATIONS_TANG">
+    <End Type="WEBSITEKSModel.TANG" Role="TANG" Multiplicity="0..1" />
+    <End Type="WEBSITEKSModel.PHONG" Role="PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TANG">
+        <PropertyRef Name="MATANG" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MATANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

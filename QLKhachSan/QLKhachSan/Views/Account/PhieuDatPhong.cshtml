@@ -1,0 +1,146 @@
+﻿@model IEnumerable<QLKhachSan.Models.PHIEUDATPHONG>
+
+@{
+    ViewBag.Title = "Danh sách phiếu đặt phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/Content/Home/images/ks.jpg)">
+    <div class="overlay"></div>
+</header>
+<div class="container">
+    <br /><br /><br /><br />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">@ViewBag.title</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Mã phiếu
+                        </th>
+                        <th>
+                            Số phòng
+                        </th>
+                        <th>
+                            Ngày vào
+                        </th>
+                        <th>
+                            Ngày dự kiến ra
+                        </th>
+                        <th>
+                            Tình trạng
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var item in Model)
+                   {
+                       if (item.TINHTRANGPHIEU == 4)
+                       {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAPHIEUDAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYVAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYRA)
+                            </td>
+                            <td>
+                               Đã Xong
+                            </td>
+                        </tr>
+                       }
+                       if (item.TINHTRANGPHIEU == 3)
+                       {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAPHIEUDAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYVAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYRA)
+                            </td>
+                            <td>
+                                Đã Hủy
+                            </td>
+                        </tr>
+                       }
+                       if (item.TINHTRANGPHIEU == 1)
+                       {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAPHIEUDAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYVAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYRA)
+                            </td>
+                            <td>
+                                Đang Đặt
+                            </td>
+                        </tr>
+                       }
+                       if (item.TINHTRANGPHIEU == 2)
+                       {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAPHIEUDAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYVAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYRA)
+                            </td>
+                            <td>
+                                Đã nhận phòng
+                            </td>
+                        </tr>
+                       }
+                       if (item.TINHTRANGPHIEU == 4)
+                       {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAPHIEUDAT)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG.SOPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYVAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYRA)
+                            </td>
+                            <td>
+                                Đã thanh toán
+                            </td>
+                        </tr>
+                       }
+                   }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

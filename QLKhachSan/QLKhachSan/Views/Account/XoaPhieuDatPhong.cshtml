@@ -1,0 +1,80 @@
+﻿@model QLKhachSan.Models.PHIEUDATPHONG
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/Content/Home/images/ks.jpg)">
+    <div class="overlay"></div>
+</header>
+<div class="container">
+    <br /><br /><br /><br />
+
+    <h3>Bạn muốn hủy phiếu đã đặt !</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Tên khách hàng")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KHACHHANG.HOTEN)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayName("Ngày đặt")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYDAT)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayName("Ngày vào")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYVAO)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Ngày ra")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYRA)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayName("Số phòng")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PHONG.SOPHONG)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Tình trạng")
+            </dt>
+
+            @*<dd>
+                @Html.DisplayFor(model => model.tblTinhTrangPhieuDatPhong.tinh_trang)
+            </dd>*@
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Hủy phiếu" class="btn btn-default" />
+            </div>
+        }
+    </div>
+    <br />
+</div>

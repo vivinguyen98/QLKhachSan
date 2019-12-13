@@ -1,0 +1,55 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.btn-g {
+    padding: 2px 10px;
+}
+.badge-g{
+    font-size:90%;
+}
+.nav-g {
+    background-color: #006064;
+}
+.nav-item-g:hover {
+    background-color: #252729;
+}
+.g-header {
+    height: 82px;
+}
+.hidden{
+    display:none;
+}
+.g-max-width{
+    max-width:75%;
+}
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
+    color: #E0E0E0;
+}
+.g-dropdown {
+    margin-left: -18rem;
+    width:22rem;
+}

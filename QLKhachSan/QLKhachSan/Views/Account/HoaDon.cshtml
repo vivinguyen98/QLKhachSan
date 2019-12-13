@@ -1,0 +1,103 @@
+﻿@model IEnumerable<QLKhachSan.Models.HOADON>
+
+@{
+    ViewBag.Title = "Danh sách hóa đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(/Content/Home/images/ks.jpg)">
+    <div class="overlay"></div>
+</header>
+<div class="container">
+    <br /><br /><br /><br />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Danh sách hóa đơn</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Mã hóa đơn
+                        </th>
+                        <th>
+                            Số phòng
+                        </th>
+                        <th>
+                            Ngày vào
+                        </th>
+                        <th>
+                            Ngày trả phòng
+                        </th>
+                        <th>
+                            Tiền phòng
+                        </th>
+                        <th>
+                            Tiền dịch vụ
+                        </th>
+
+                        <th>
+                            Phụ thu
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                        <th>
+                            Tình trạng
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TINHTRANGHD == 2)
+                        {
+                            <tr class="alert-success">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MAHD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.PHONG.SOPHONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PHIEUDATPHONG.NGAYVAO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYTRAPHONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TIENPHONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TIENDICHVU)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PHUTHU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                                </td>
+                                <td>
+                                    Đã thanh toán
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ma_hd }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.ma_hd }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.ma_hd })*@
+                                    @Html.ActionLink("Chi tiết", "ChiTietHoaDon", new { id = item.MAHD })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

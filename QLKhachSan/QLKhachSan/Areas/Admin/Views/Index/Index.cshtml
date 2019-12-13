@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Bảng quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using QLKhachSan.Models
+@model List<PHONG>
+
+<!-- SSS -->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Index")">Admin</a>
+    </li>
+    <li class="breadcrumb-item active">Dashboard</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"><div class="alert alert-success">Có @ViewBag.so_phong_trong phòng đang trống</div></div>
+        <div class="col-md-4"><div class="alert alert-danger">Có @ViewBag.so_phong_sd phòng đang được sử dụng</div></div>
+    </div>
+</div>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Phòng
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <!-- /SSS -->
+            <table class="table table-bordered table-striped table-hover" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Số phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Tầng</th>
+                        <th>Giá</th>
+                        <th>Tình trạng</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Số phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Tầng</th>
+                        <th>Giá</th>
+                        <th>Tình trạng</th>
+                        <th>Option</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.MAPHONG</td>
+                            <td>@item.SOPHONG</td>
+                            <td>@item.LOAIPHONG.MOTA</td>
+                            <td>@item.TANG.TENTANG</td>
+                            <td>@item.LOAIPHONG.GIA / Ngày</td>
+
+
+                            @if (item.TINHTRANGPHONG == 1)
+                            {
+                                <td><span class="badge badge-success badge-g">TRỐNG</span></td>
+                                <td></td>
+                            }
+                            else if (item.TINHTRANGPHONG == 2)
+                            {
+                                <td><span class="badge badge-danger badge-g">ĐANG SỬ DỤNG</span></td>
+                                <td>
+                                    <a href="@Url.Action("FindHdById","Index",new { id = @item.MAPHONG })"><div class="btn btn-danger badge-g">Trả phòng</div></a>
+                                    <a href="@Url.Action("FindHdById2","Index",new { id = @item.MAPHONG })" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Gọi DV</a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Cập nhật lần cuối lúc @DateTime.Now</div>
+</div>

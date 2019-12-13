@@ -1,0 +1,65 @@
+﻿@model QLKhachSan.Models.PHIEUDATPHONG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div>
+    <h4>Chi tiết phiếu đặt phòng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Ngày đặt")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYDAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày vào")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYVAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày ra")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYRA)
+        </dd>
+
+       
+        <dt>
+            @Html.DisplayName("Tình trạng phiếu")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINHTRANGPHIEU)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Họ tên khách hàng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.HOTEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Số phòng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHONG.SOPHONG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Sửa", "Edit", new { id = Model.MAPHIEUDAT }) |*@
+    @Html.ActionLink("Quay về danh sách", "Index")
+</p>
